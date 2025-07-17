@@ -12,15 +12,20 @@ namespace ToDoList
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddCors(options => 
+            builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowReactApp", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173").AllowAnyHeader()
-                    .AllowAnyMethod().AllowCredentials();
-                });    
-                
+                    policy.WithOrigins(
+                        "http://localhost:5173",
+                        "https://to-do-list-u2we.onrender.com"
+                    )
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
             });
+
             // Add services to the container.
 
             builder.Services.AddControllers();
